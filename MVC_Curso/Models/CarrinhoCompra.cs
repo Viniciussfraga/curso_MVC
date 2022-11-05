@@ -1,4 +1,5 @@
-﻿using MVC_Curso.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using MVC_Curso.Context;
 
 namespace MVC_Curso.Models {
     public class CarrinhoCompra {
@@ -55,7 +56,50 @@ namespace MVC_Curso.Models {
             }
             _context.SaveChanges();
         }
+        //Se o metódo retornasse um int precisaria das linhas q estão comentadas
+        public void RemoverDoCarrinho(Lanche lanche) {
+            var carrinhoCompraItem =
+                _context.CarrinhoCompraItens.SingleOrDefault(
+                    s=> s.Lanche.LancheId == lanche.LancheId &&
+                    s.CarrinhoCompraId == CarrinhoCompraId);
 
+            //var quantidadeLocal = 0;
+
+            if(carrinhoCompraItem != null) {
+                if(carrinhoCompraItem.Quantidade > 1) {
+                    carrinhoCompraItem.Quantidade--;
+                    //quantidadeLocal = carrinhoCompraItem.Quantidade;
+                }
+                else {
+                    _context.CarrinhoCompraItens.Remove(carrinhoCompraItem);
+                }
+            }
+            _context.SaveChanges();
+           //return quantidadeLocal;
+           
+        }
+
+        public List<CarrinhoCompraItem> GetCarrinhoCompraItens() {
+            return CarrinhoCompraItems ??
+                   (CarrinhoCompraItems = _context.CarrinhoCompraItens
+                   .Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
+                   .Include(s => s.Lanche)
+                   .ToList());
+        }
+
+        public void LimparCarrinho() {
+            var carrinhoItens = _context.CarrinhoCompraItens
+                                .Where(carrinho => carrinho.CarrinhoCompraId == CarrinhoCompraId);
+            _context.CarrinhoCompraItens.RemoveRange(carrinhoItens);
+            _context.SaveChanges();
+        }
+
+        public decimal GetCarrinhoCompraTotal() {
+            var total = _context.CarrinhoCompraItens
+                        .Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
+                        .Select(c => c.Lanche.Preco * c.Quantidade).Sum();
+            return total;
+        }
 
     }
 }
