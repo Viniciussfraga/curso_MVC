@@ -1,15 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVC_Curso.Models;
+using MVC_Curso.Repositories.Interfaces;
+using MVC_Curso.ViewModels;
 using System.Diagnostics;
+using System.Linq.Expressions;
 
 namespace MVC_Curso.Controllers {
     public class HomeController : Controller {
 
+        private readonly ILancheRepository _lancheRepository;
+
+        public HomeController(ILancheRepository lancheRepository) {
+            _lancheRepository = lancheRepository;
+        }
+
         public IActionResult Index() {
-
-            TempData["Nome"] = "Vinicius";
-
-            return View();
+            var homeViewModel = new HomeViewModel {
+                LanchesPreferidos = _lancheRepository.LanchesPreferidos
+            };
+            return View(homeViewModel);
         }
 
 
