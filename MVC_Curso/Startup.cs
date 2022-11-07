@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MVC_Curso.Context;
 using MVC_Curso.Models;
 using MVC_Curso.Repositories;
@@ -47,6 +48,15 @@ public class Startup {
         app.UseAuthorization();
 
         app.UseEndpoints(endpoints => {
+
+            endpoints.MapControllerRoute(
+                name:"categoriaFiltro",
+                pattern:"Lanche/{action}/{categoria?}",
+                defaults: new { Controller = "Lanche", Action = "List"}
+                );
+
+
+
             endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
