@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TsejJ+VOeHD8+QHnsa9+qJAApzPhoH7buC2PCbJ4f7o=",
+  "Hash": "/+t0XmRftxgwHmf4p7iars6nzCE15LyViu8t3GycCpk=",
   "Source": "MVC_Curso",
   "BasePath": "_content/MVC_Curso",
   "Mode": "Default",
@@ -151,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\cart-5-16.ico"
+    },
+    {
+      "Identity": "C:\\Users\\vinix\\Dropbox\\curso c#\\MVC_Curso\\MVC_Curso\\wwwroot\\images\\delete.png",
+      "SourceId": "MVC_Curso",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\vinix\\Dropbox\\curso c#\\MVC_Curso\\MVC_Curso\\wwwroot\\",
+      "BasePath": "_content/MVC_Curso",
+      "RelativePath": "images/delete.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\delete.png"
     },
     {
       "Identity": "C:\\Users\\vinix\\Dropbox\\curso c#\\MVC_Curso\\MVC_Curso\\wwwroot\\images\\Envelope-icon24.png",
